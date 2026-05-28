@@ -18,13 +18,16 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y bc build-essential zip curl libstdc++6 git wget python3 \
-               gcc clang libssl-dev repo flex bison crossbuild-essential-arm64 crossbuild-essential-armel
+          gcc clang libssl-dev repo flex bison crossbuild-essential-arm64 crossbuild-essential-armel
+
       - name: Provision AOSP Clang 12 Toolchain
         run: |
-          mkdir -p $GITHUB_WORKSPACE/toolchains/clang
+          mkdir -p toolchains/clang
+          # NOTE: Lengapi URL di bawah ini jika terdapat token atau branch spesifik yang terpotong pada gambar Anda
           wget -qO clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/clang-r416183b.tar.gz
-          tar -xf clang.tar.gz -C $GITHUB_WORKSPACE/toolchains/clang
+          tar -xf clang.tar.gz -C toolchains/clang
           rm clang.tar.gz
+
       - name: Execute Kernel Compilation
         run: |
           export PATH=$GITHUB_WORKSPACE/toolchains/clang/bin:$PATH
@@ -33,24 +36,24 @@ jobs:
           export CC=clang
           export CROSS_COMPILE=aarch64-linux-gnu-
           export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
-          
+
           # PERHATIAN: Ganti 'gale_defconfig' dengan nama berkas defconfig Anda yang valid
           DEFCONFIG_NAME="gale_defconfig"
-          
+
           make O=out ARCH=arm64 $DEFCONFIG_NAME
-          
           make -j$(nproc --all) O=out \
-               ARCH=arm64 \
-               CC=clang \
-               CROSS_COMPILE=aarch64-linux-gnu- \
-               CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-               LLVM=1 LLVM_IAS=1
+            ARCH=arm64 \
+            CC=clang \
+            CROSS_COMPILE=aarch64-linux-gnu- \
+            CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+            LLVM=1 LLVM_IAS=1
+
       - name: Extract and Upload Compiled Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: Moonbeam-Kernel-Artifacts
           path: |
             out/arch/arm64/boot/Image
-            out/arch/arm64/boot/Image.gz
+            out/arch/arch/arm64/boot/Image.gz
             out/arch/arm64/boot/Image.gz-dtb
             out/arch/arm64/boot/dts/
