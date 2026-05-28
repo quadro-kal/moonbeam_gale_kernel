@@ -41,8 +41,7 @@ jobs:
             ARCH=arm64 \
             CC=clang \
             CROSS_COMPILE=aarch64-linux-gnu- \
-            CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-            LLVM=1 LLVM_IAS=1
+            CROSS_COMPILE_ARM32=arm-linux-gnueabi-  
 
       - name: Extract and Upload Compiled Artifacts
         uses: actions/upload-artifact@v4
