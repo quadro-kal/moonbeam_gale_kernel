@@ -20,13 +20,9 @@ jobs:
           sudo apt-get install -y bc build-essential zip curl libstdc++6 git wget python3 \
           gcc clang libssl-dev repo flex bison crossbuild-essential-arm64 crossbuild-essential-armel
 
-      - name: Provision AOSP Clang 12 Toolchain
+      - name: Provision Proton Clang Toolchain
         run: |
-          mkdir -p toolchains/clang
-          # NOTE: Lengapi URL di bawah ini jika terdapat token atau branch spesifik yang terpotong pada gambar Anda
-          wget -qO clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/clang-r416183b.tar.gz
-          tar -xf clang.tar.gz -C toolchains/clang
-          rm clang.tar.gz
+          git clone --depth=1 https://github.com/kdrag0n/proton-clang toolchains/clang
 
       - name: Execute Kernel Compilation
         run: |
@@ -54,6 +50,6 @@ jobs:
           name: Moonbeam-Kernel-Artifacts
           path: |
             out/arch/arm64/boot/Image
-            out/arch/arch/arm64/boot/Image.gz
+            out/arch/arm64/boot/Image.gz
             out/arch/arm64/boot/Image.gz-dtb
             out/arch/arm64/boot/dts/
