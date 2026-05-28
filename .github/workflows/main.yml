@@ -24,7 +24,7 @@ jobs:
         run: |
           git clone --depth=1 https://github.com/kdrag0n/proton-clang toolchains/clang
 
-            - name: Execute Kernel Compilation
+      - name: Execute Kernel Compilation
         run: |
           export PATH=$GITHUB_WORKSPACE/toolchains/clang/bin:$PATH
           export ARCH=arm64
