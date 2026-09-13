@@ -1,3 +1,5 @@
+#include "../../include/mtk_cpufreq_hybrid.h"
+
 /* SPDX-License-Identifier: GPL-2.0 */
 /*
  * Copyright (c) 2019 MediaTek Inc.
@@ -14,7 +16,7 @@
 #include "mtk_cpufreq_internal.h"
 #include "mtk_cpufreq_platform.h"
 #include "mtk_cpufreq_debug.h"
-#include "mtk_cpufreq_hybrid.h"
+
 #include "mtk_cpufreq_opp_table.h"
 
 #define DCM_ENABLE 1
@@ -1905,7 +1907,7 @@ static int __init _mt_cpufreq_pdrv_init(void)
 	return ret;
 }
 
-static void __exit _mt_cpufreq_pdrv_exit(void)
+static void _mt_cpufreq_pdrv_exit(void)
 {
 	platform_driver_unregister(&_mt_cpufreq_pdrv);
 #ifndef CPU_DVFS_DT_REG

@@ -1,3 +1,4 @@
+#include <linux/idr.h>
 /*
  * Copyright 1999 Precision Insight, Inc., Cedar Park, Texas.
  * Copyright 2000 VA Linux Systems, Inc., Sunnyvale, California.
