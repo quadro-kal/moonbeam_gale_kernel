@@ -11,7 +11,7 @@ int mt_cpufreq_set_by_wfi_load_cluster(unsigned int cluster_id,
 	unsigned int freq)
 {
 #ifdef CONFIG_HYBRID_CPU_DVFS
-	enum mt_cpu_dvfs_id id = (enum mt_cpu_dvfs_id) cluster_id;
+	unsigned int id = (enum mt_cpu_dvfs_id) cluster_id;
 
 	if (freq < mt_cpufreq_get_freq_by_idx(id, 15))
 		freq = mt_cpufreq_get_freq_by_idx(id, 15);
@@ -30,7 +30,7 @@ int mt_cpufreq_set_by_schedule_load_cluster(unsigned int cluster_id,
 	unsigned int freq)
 {
 #ifdef CONFIG_HYBRID_CPU_DVFS
-	enum mt_cpu_dvfs_id id = (enum mt_cpu_dvfs_id) cluster_id;
+	unsigned int id = (enum mt_cpu_dvfs_id) cluster_id;
 
 	if (freq < mt_cpufreq_get_freq_by_idx(id, 15))
 		freq = mt_cpufreq_get_freq_by_idx(id, 15);
@@ -48,7 +48,7 @@ EXPORT_SYMBOL(mt_cpufreq_set_by_schedule_load_cluster);
 unsigned int mt_cpufreq_find_close_freq(unsigned int cluster_id,
 	unsigned int freq)
 {
-	enum mt_cpu_dvfs_id id;
+	unsigned int id;
 	struct mt_cpu_dvfs *p;
 	int idx;
 
@@ -69,7 +69,7 @@ int mt_cpufreq_set_iccs_frequency_by_cluster(int en,
 	unsigned int cluster_id, unsigned int freq)
 {
 #ifdef CONFIG_HYBRID_CPU_DVFS
-	enum mt_cpu_dvfs_id id = (enum mt_cpu_dvfs_id) cluster_id;
+	unsigned int id = (enum mt_cpu_dvfs_id) cluster_id;
 
 	if (!en)
 		freq = mt_cpufreq_get_freq_by_idx(id, 15);
@@ -95,7 +95,7 @@ int is_in_suspend(void)
 }
 EXPORT_SYMBOL(is_in_suspend);
 
-int mt_cpufreq_update_volt(enum mt_cpu_dvfs_id id,
+int mt_cpufreq_update_volt(unsigned int id,
 	unsigned int *volt_tbl, int nr_volt_tbl)
 {
 	struct mt_cpu_dvfs *p;
@@ -123,7 +123,7 @@ EXPORT_SYMBOL(mt_cpufreq_update_volt);
 
 cpuVoltsampler_func g_pCpuVoltSampler_met;
 cpuVoltsampler_func g_pCpuVoltSampler_ocp;
-void notify_cpu_volt_sampler(enum mt_cpu_dvfs_id id,
+void notify_cpu_volt_sampler(unsigned int id,
 	unsigned int volt, int up, int event)
 {
 	unsigned int mv = volt / 100;
@@ -159,7 +159,7 @@ void mt_cpufreq_set_ptbl_registerCB(mt_cpufreq_set_ptbl_funcPTP pCB)
 EXPORT_SYMBOL(mt_cpufreq_set_ptbl_registerCB);
 
 
-unsigned int mt_cpufreq_get_cur_volt(enum mt_cpu_dvfs_id id)
+unsigned int mt_cpufreq_get_cur_volt(unsigned int id)
 {
 #if 0
 	struct mt_cpu_dvfs *p = id_to_cpu_dvfs(id);
@@ -185,7 +185,7 @@ unsigned int mt_cpufreq_get_cur_volt(enum mt_cpu_dvfs_id id)
 }
 EXPORT_SYMBOL(mt_cpufreq_get_cur_volt);
 
-unsigned int mt_cpufreq_get_cur_freq(enum mt_cpu_dvfs_id id)
+unsigned int mt_cpufreq_get_cur_freq(unsigned int id)
 {
 #ifdef CONFIG_HYBRID_CPU_DVFS
 	int freq_idx = cpuhvfs_get_cur_dvfs_freq_idx(id);
@@ -210,7 +210,7 @@ unsigned int mt_cpufreq_get_cur_freq(enum mt_cpu_dvfs_id id)
 }
 EXPORT_SYMBOL(mt_cpufreq_get_cur_freq);
 
-unsigned int mt_cpufreq_get_freq_by_idx(enum mt_cpu_dvfs_id id, int idx)
+unsigned int mt_cpufreq_get_freq_by_idx(unsigned int id, int idx)
 {
 	struct mt_cpu_dvfs *p;
 
@@ -232,7 +232,7 @@ unsigned int mt_cpufreq_get_freq_by_idx(enum mt_cpu_dvfs_id id, int idx)
 }
 EXPORT_SYMBOL(mt_cpufreq_get_freq_by_idx);
 
-unsigned int mt_cpufreq_get_volt_by_idx(enum mt_cpu_dvfs_id id, int idx)
+unsigned int mt_cpufreq_get_volt_by_idx(unsigned int id, int idx)
 {
 	struct mt_cpu_dvfs *p;
 
@@ -254,7 +254,7 @@ unsigned int mt_cpufreq_get_volt_by_idx(enum mt_cpu_dvfs_id id, int idx)
 }
 EXPORT_SYMBOL(mt_cpufreq_get_volt_by_idx);
 
-unsigned int mt_cpufreq_get_cur_phy_freq_no_lock(enum mt_cpu_dvfs_id id)
+unsigned int mt_cpufreq_get_cur_phy_freq_no_lock(unsigned int id)
 {
 	struct mt_cpu_dvfs *p;
 	unsigned int freq = 0;

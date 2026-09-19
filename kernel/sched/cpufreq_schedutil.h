@@ -52,7 +52,7 @@ int __attribute__ ((weak))  mt_cpufreq_get_sched_enable(void)
 	return 0;
 }
 unsigned int __attribute__ ((weak))  mt_cpufreq_get_cur_freq(
-			enum mt_cpu_dvfs_id id)
+			unsigned int id)
 {
 	return 0;
 }
@@ -67,5 +67,5 @@ static inline unsigned int mt_cpufreq_get_freq_by_idx(
 			int cid, int idx) { return 0; }
 static inline int mt_cpufreq_get_sched_enable(void) { return 0; }
 static inline  int mt_cpufreq_get_cur_freq(
-			enum mt_cpu_dvfs_id id) { return 0; };
+			unsigned int id) { return 0; };
 #endif

@@ -1,3 +1,5 @@
+#include "../../include/mtk_cpufreq_hybrid.h"
+
 /* SPDX-License-Identifier: GPL-2.0 */
 /*
  * Copyright (c) 2019 MediaTek Inc.
@@ -8,7 +10,7 @@
 #include <linux/uaccess.h>
 
 #include "mtk_cpufreq_internal.h"
-#include "mtk_cpufreq_hybrid.h"
+
 #include "mtk_cpufreq_platform.h"
 
 #ifdef CONFIG_MTK_CPU_MSSV
