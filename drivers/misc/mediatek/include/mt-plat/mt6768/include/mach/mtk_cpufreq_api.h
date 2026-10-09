@@ -80,10 +80,10 @@ extern unsigned int
 mt_cpufreq_get_cur_phy_freq_idx_no_lock(unsigned int cluster_id);
 
 /* CCI */
-extern void mt_cpufreq_update_cci_map_tbl(unsigned int idx_1,
+extern void mt_cpufreq_update_cci_map_tbl_patched(unsigned int idx_1,
 	unsigned int idx_2, unsigned char result, unsigned int mode,
 	enum cci_tbl_use_id use_id);
-extern void mt_cpufreq_update_cci_mode(unsigned int mode,
+extern void mt_cpufreq_update_cci_mode_patched(unsigned int mode,
 	enum cci_tbl_use_id use_id);
 typedef void (*cpuFreqsampler_func)(unsigned int cluster_id, unsigned int freq);
 extern void mt_cpufreq_set_governor_freq_registerCB(cpuFreqsampler_func pCB);

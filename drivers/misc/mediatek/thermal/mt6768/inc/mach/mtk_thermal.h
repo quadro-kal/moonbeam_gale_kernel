@@ -22,7 +22,7 @@ struct mt_gpufreq_power_table_info {
 	unsigned int gpufreq_power;
 };
 #else
-#include "mtk_gpufreq.h"
+#include "../../../../../gpu/mediatek/gpufreq/include/mtk_gpufreq.h"
 #endif
 #include "mtk_thermal_typedefs.h"
 

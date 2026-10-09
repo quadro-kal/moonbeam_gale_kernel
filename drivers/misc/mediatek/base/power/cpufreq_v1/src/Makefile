@@ -107,3 +107,4 @@ endif
 # platform dependent files
 obj-y += mach/
 
+obj-y += mtk_cpufreq_dummy.o
